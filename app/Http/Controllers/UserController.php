@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -11,7 +12,14 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        // query from database, in table users.
+        $users = User::paginate(50);
+
+        // view for displaying users
+        return view('users.index', compact('users')); // pass data using compact()
+
+        // return view('users.index', ['pengguna' => $users]); // pass data using array
+        // return view('users.index')->with('pengguna', $users); // pass using with()
     }
 
     /**

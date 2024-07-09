@@ -21,3 +21,16 @@ Display available routes:
 ```bash
 php artisan route:list
 ```
+
+Seed dummy data from tinker:
+
+```bash
+php artisan tinker
+> \App\Models\User::factory(50)->create();
+```
+
+Create new view:
+
+```bash
+php artisan make:view users.index
+```
