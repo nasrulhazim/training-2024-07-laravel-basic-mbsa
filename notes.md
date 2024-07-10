@@ -41,7 +41,7 @@ See about application settings:
 
 ```bash
 php artisan about
-``
+```
 
 Install Jetstream
 
