@@ -68,3 +68,11 @@ For production
 ```bash
 npm run build
 ```
+
+Generate URL using route name:
+
+```php
+// first argument is the route name
+// second argument is the id tied to the route
+route('users.show', $user->id); // output: http://127.0.0.1:8000/users/1
+```
