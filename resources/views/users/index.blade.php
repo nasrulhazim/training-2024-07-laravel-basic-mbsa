@@ -5,7 +5,6 @@
         </h2>
     </x-slot>
 
-
     <div>
         <div class="bg-white max-w-7xl mt-10 mx-auto py-10 sm:px-6 lg:px-8">
             <div class="mt-5 md:mt-0 md:col-span-2">
@@ -13,7 +12,6 @@
                     {{ $users->links() }}
                 </div>
                 <ol>
-
                     @foreach ($users as $user)
                         <li>{{ $user->name }}</li>
                     @endforeach
