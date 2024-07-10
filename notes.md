@@ -54,3 +54,17 @@ Install Jetstream with Livewire Stack:
 ```bash
 php artisan jetstream:install livewire
 ```
+
+Run compile assets:
+
+```bash
+npm run dev
+```
+
+> run during development
+
+For production
+
+```bash
+npm run build
+```
