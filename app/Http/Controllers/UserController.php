@@ -13,7 +13,8 @@ class UserController extends Controller
     public function index()
     {
         // query from database, in table users.
-        $users = User::paginate(50);
+        // select * from users limit 15
+        $users = User::paginate(); // default paginate to 15
 
         // view for displaying users
         return view('users.index', compact('users')); // pass data using compact()
