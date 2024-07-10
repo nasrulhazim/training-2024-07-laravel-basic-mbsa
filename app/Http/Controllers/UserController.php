@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules\Password;
 
 class UserController extends Controller
 {
@@ -28,7 +30,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('users.create');
     }
 
     /**
@@ -36,7 +38,34 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // validation form submission
+        $request->validate([
+            'name' => ['required', 'string', 'max:250'],
+            'email' => ['required', 'email', 'max:250'],
+            'password' => [
+                'required',
+                'string',
+                'confirmed',
+                Password::default()
+                    ->symbols()
+                    ->mixedCase()
+                    ->max(12)
+            ],
+        ]);
+
+        // get the data from inputs
+        $data = $request->only('name', 'email', 'password');
+
+        // encrypt the password
+        $data['password'] = Hash::make($data['password']);
+
+        // create user
+        $user = User::create($data);
+
+        // redirect to user details page
+        return redirect(
+            route('users.show', $user->id)
+        )->with('message', 'User successfully created!');
     }
 
     /**
