@@ -26,6 +26,19 @@
 
                                     <a class="text-sm  hover:bg-orange-100 rounded-md  px-4 py-2  border-slate-300 border-2"
                                         href="{{ route('users.edit', $user->id) }}">Update</a>
+
+                                    <div>
+                                        <form method="POST" action="{{ route('users.destroy', $user->id) }}">
+                                            @csrf @method('DELETE')
+
+                                            <div class="px-1 cursor-pointer text-sm  hover:bg-red-100 rounded-md  px-4 py-2  border-slate-300 border-2"
+                                                onclick="if(confirm('Are you sure want to delete {{ $user->name }}?')) {
+                                                    this.parentElement.submit()
+                                                }">
+                                                🗑️
+                                            </div>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </li>
