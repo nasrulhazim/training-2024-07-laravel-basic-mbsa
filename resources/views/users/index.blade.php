@@ -18,9 +18,16 @@
                 <ol>
                     @foreach ($users as $user)
                         <li class="py-4">
-                            <span class="px-4">{{ $user->name }} </span>
-                            <a class="text-sm bg-indigo-700 hover:bg-indigo-500 rounded-md text-white px-4 py-2"
-                                href="{{ route('users.show', $user->id) }}">View</a>
+                            <div class="flex justify-between">
+                                <span class="px-4">{{ $user->name }} </span>
+                                <div class="flex justify-between gap-x-2">
+                                    <a class="text-sm  hover:bg-green-100 rounded-md  px-4 py-2  border-slate-300 border-2"
+                                        href="{{ route('users.show', $user->id) }}">View</a>
+
+                                    <a class="text-sm  hover:bg-orange-100 rounded-md  px-4 py-2  border-slate-300 border-2"
+                                        href="{{ route('users.edit', $user->id) }}">Update</a>
+                                </div>
+                            </div>
                         </li>
                     @endforeach
                 </ol>
