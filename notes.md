@@ -34,3 +34,23 @@ Create new view:
 ```bash
 php artisan make:view users.index
 ```
+
+## Day 2
+
+See about application settings:
+
+```bash
+php artisan about
+``
+
+Install Jetstream
+
+```bash
+composer require laravel/jetstream
+```
+
+Install Jetstream with Livewire Stack:
+
+```bash
+php artisan jetstream:install livewire
+```

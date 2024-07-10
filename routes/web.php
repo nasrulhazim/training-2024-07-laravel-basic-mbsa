@@ -39,3 +39,13 @@ Route::get('/hi-konchiwa', function () {
     return view('hi.nihongo.konichiwa');
 });
 
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+});
