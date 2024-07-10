@@ -13,7 +13,10 @@
                 </div>
                 <ol>
                     @foreach ($users as $user)
-                        <li>{{ $user->name }}</li>
+                        <li class="py-4">
+                            <span class="px-4">{{ $user->name }} </span>
+                            <a class="text-sm bg-indigo-700 hover:bg-indigo-500 rounded-md text-white px-4 py-2" href="{{ route('users.show', $user->id) }}">View</a>
+                        </li>
                     @endforeach
                 </ol>
                 <div class="flex justify-end">
