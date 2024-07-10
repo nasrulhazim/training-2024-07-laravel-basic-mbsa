@@ -83,7 +83,9 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $user = User::where('id', $id)->firstOrFail();
+
+        return view('users.edit', compact('user'));
     }
 
     /**
@@ -91,7 +93,41 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $rules = [
+            'name' => ['required', 'string', 'max:250'],
+            'email' => ['required', 'email', 'max:250'],
+        ];
+
+        $data = $request->only('name', 'email', 'password');
+
+        if(! empty($data['password'])) {
+            $rules['password'] = [
+                'required',
+                'string',
+                'confirmed',
+                Password::default()
+                    ->symbols()
+                    ->mixedCase()
+                    ->max(12)
+            ];
+        }
+
+        // validate
+        $request->validate($rules);
+
+        // encrypt the password if password is update
+        if(! empty($data['password'])) {
+            $data['password'] = Hash::make($data['password']);
+        } else {
+            unset($data['password']);
+        }
+
+        User::where('id', $id)->update($data);
+
+        return redirect(
+            route('users.show', $id)
+        )->with('message', 'User has been successfully updated.');
+
     }
 
     /**
