@@ -3,17 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
 
 class UserController extends Controller
 {
+    use AuthorizesRequests;
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
+        $this->authorize('viewAny', User::class);
+
         // query from database, in table users.
         // select * from users limit 15
         $users = User::paginate(); // default paginate to 15
@@ -30,6 +35,8 @@ class UserController extends Controller
      */
     public function create()
     {
+        $this->authorize('create', User::class);
+
         return view('users.create');
     }
 
@@ -38,6 +45,8 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('create', User::class);
+
         // validation form submission
         $request->validate([
             'name' => ['required', 'string', 'max:250'],
@@ -75,6 +84,8 @@ class UserController extends Controller
     {
         $user = User::where('id', $id)->firstOrFail();
 
+        $this->authorize('view', $user);
+
         return view('users.show', compact('user'));
     }
 
@@ -84,6 +95,8 @@ class UserController extends Controller
     public function edit(string $id)
     {
         $user = User::where('id', $id)->firstOrFail();
+
+        $this->authorize('update', $user);
 
         return view('users.edit', compact('user'));
     }
@@ -122,7 +135,11 @@ class UserController extends Controller
             unset($data['password']);
         }
 
-        User::where('id', $id)->update($data);
+        $user = User::where('id', $id)->firstOrFail();
+
+        $this->authorize('update', $user);
+
+        $user->update($data);
 
         return redirect(
             route('users.show', $id)
@@ -135,7 +152,11 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        User::where('id', $id)->delete();
+        $user = User::where('id', $id)->firstOrFail();
+
+        $this->authorize('delete', $user);
+
+        $user->delete();
 
         return redirect(
             route('users.index')

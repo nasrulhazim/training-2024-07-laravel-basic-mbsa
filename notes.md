@@ -76,3 +76,11 @@ Generate URL using route name:
 // second argument is the id tied to the route
 route('users.show', $user->id); // output: http://127.0.0.1:8000/users/1
 ```
+
+### Day 3
+
+Create Policy:
+
+```bash
+php artisan make:policy UserPolicy --model=User
+```
