@@ -13,7 +13,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-
         app()->isProduction()
             ? $this->seedProduction()
             : $this->seedDevelopment();

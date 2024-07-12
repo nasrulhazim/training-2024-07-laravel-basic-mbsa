@@ -17,8 +17,8 @@ class AttendeeFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->name,
-            'email' => $this->faker->unique()->safeEmail,
+            'name' => fake()->name,
+            'email' => fake()->unique()->safeEmail,
         ];
     }
 }

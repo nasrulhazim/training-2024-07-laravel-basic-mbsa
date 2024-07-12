@@ -16,10 +16,10 @@ class BookSeeder extends Seeder
             return;
         }
 
-        \App\Models\User::factory(10)->create();
-        \App\Models\Author::factory(5)->create();
-        \App\Models\Genre::factory(5)->create();
-        \App\Models\Book::factory(20)->create();
-        \App\Models\BorrowRecord::factory(50)->create();
+        \App\Models\User::factory(rand(10, 25))->create();
+        \App\Models\Author::factory(rand(5, 20))->create();
+        \App\Models\Genre::factory(rand(5, 10))->create();
+        \App\Models\Book::factory(rand(20, 200))->create();
+        \App\Models\BorrowRecord::factory(rand(50, 100))->create();
     }
 }

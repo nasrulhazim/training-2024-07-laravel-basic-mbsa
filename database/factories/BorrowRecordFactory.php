@@ -21,8 +21,8 @@ class BorrowRecordFactory extends Factory
         return [
             'book_id' => Book::factory(),
             'user_id' => User::factory(),
-            'borrowed_at' => $this->faker->date,
-            'returned_at' => $this->faker->optional()->date,
+            'borrowed_at' => fake()->date,
+            'returned_at' => fake()->optional()->date,
         ];
     }
 }

@@ -18,11 +18,11 @@ class EventFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->sentence,
-            'description' => $this->faker->paragraph,
+            'name' => fake()->sentence,
+            'description' => fake()->paragraph,
             'venue_id' => Venue::factory(),
-            'start_time' => $this->faker->dateTimeBetween('+1 days', '+1 months'),
-            'end_time' => $this->faker->dateTimeBetween('+1 days', '+1 months'),
+            'start_time' => fake()->dateTimeBetween('+1 days', '+1 months'),
+            'end_time' => fake()->dateTimeBetween('+1 days', '+1 months'),
         ];
     }
 }

@@ -19,7 +19,7 @@ class BookFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => $this->faker->sentence,
+            'title' => fake()->sentence,
             'author_id' => Author::factory(),
             'genre_id' => Genre::factory(),
         ];

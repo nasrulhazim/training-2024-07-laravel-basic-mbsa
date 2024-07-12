@@ -16,12 +16,16 @@ class PostSeeder extends Seeder
             return;
         }
 
-        \App\Models\User::factory(10)->create()->each(function ($user) {
-            $user->posts()->saveMany(\App\Models\Post::factory(5)->make())->each(function ($post) {
-                $post->comments()->saveMany(\App\Models\Comment::factory(3)->make());
+        // create 10 users
+        \App\Models\User::factory(rand(10, 25))->create()->each(function ($user) {
+            // each user has 5 posts
+            $user->posts()->saveMany(\App\Models\Post::factory(rand(5, 15))->make())->each(function ($post) {
+                // each user's post has 3 comments.
+                $post->comments()->saveMany(\App\Models\Comment::factory(rand(3, 25))->make());
             });
         });
 
+        // create 5 categories
         \App\Models\Category::factory(5)->create();
     }
 }
