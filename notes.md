@@ -100,3 +100,9 @@ Seed specific class seeder:
 ```bash
 php artisan db:seed --class=PostSeeder
 ```
+
+Set local for faker in `.env`:
+
+```plaintext
+APP_FAKER_LOCALE=ms_MY
+```
