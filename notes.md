@@ -84,3 +84,19 @@ Create Policy:
 ```bash
 php artisan make:policy UserPolicy --model=User
 ```
+
+### Day 4
+
+Create model, migration, factory and seeder using `make:model` command:
+
+```bash
+php artisan make:model Category -mfs
+php artisan make:model Post -mfs
+php artisan make:model Comment -mfs
+```
+
+Seed specific class seeder:
+
+```bash
+php artisan db:seed --class=PostSeeder
+```
