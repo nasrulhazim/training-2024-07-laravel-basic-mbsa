@@ -6,7 +6,7 @@
     </x-slot>
 
     <div>
-        <div class="bg-white max-w-7xl mt-10 mx-auto py-10 sm:px-6 lg:px-8">
+        <div class="max-w-7xl bg-white rounder shadow mt-10 mx-auto py-10 sm:px-6 lg:px-8 rounded-md">
             <div class="mt-5 md:mt-0 md:col-span-2">
                 @can('create', \App\Models\User::class)
                     <div class="flex justify-end pb-4">
