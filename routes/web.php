@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WelcomeController;
+use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 
 # Route define using Closure method
@@ -22,4 +23,12 @@ Route::middleware([
     })->name('dashboard');
 
     Route::resource('users', UserController::class);
+});
+
+Route::get('/posts', function() {
+    $posts = Post::with('user')->paginate(100);
+
+    foreach ($posts as $post) {
+        echo '<p>'.$post->title. ' - ' .$post->user->name. '</p>';
+    }
 });
